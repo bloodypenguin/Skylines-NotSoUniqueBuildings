@@ -20,11 +20,11 @@ namespace NotSoUniqueBuildings.Detour
         {
             int publicServiceIndex = ItemClass.GetPublicServiceIndex(service);
             //begin mod
-            if (service == ItemClass.Service.Monument)
+            var tool = ToolsModifierControl.GetCurrentTool<BuildingTool>();
+            var buildingAi = tool?.m_prefab?.m_buildingAI;
+            if (buildingAi != null && (buildingAi is MonumentAI || buildingAi.IsWonder()))
             {
-                var currentTool = Singleton<ToolManager>.instance.m_properties.CurrentTool;
-                var tool = currentTool as BuildingTool;
-                if (tool?.m_prefab?.m_buildingAI is MonumentAI)
+                if (buildingAi.IsWonder() || service == ItemClass.Service.Monument)
                 {
                     return new FastList<ushort>();
                 }
