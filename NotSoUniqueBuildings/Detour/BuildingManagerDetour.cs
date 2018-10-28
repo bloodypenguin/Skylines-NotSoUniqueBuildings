@@ -22,9 +22,9 @@ namespace NotSoUniqueBuildings.Detour
             //begin mod
             var tool = ToolsModifierControl.GetCurrentTool<BuildingTool>();
             var buildingAi = tool?.m_prefab?.m_buildingAI;
-            if (buildingAi != null && (buildingAi is MonumentAI || buildingAi.IsWonder()))
+            if (buildingAi != null && (buildingAi is MonumentAI || buildingAi.IsWonder() || buildingAi is IndustryBuildingAI))
             {
-                if (buildingAi.IsWonder() || service == ItemClass.Service.Monument)
+                if (buildingAi.IsWonder() || service == ItemClass.Service.Monument || buildingAi is IndustryBuildingAI)
                 {
                     return new FastList<ushort>();
                 }
